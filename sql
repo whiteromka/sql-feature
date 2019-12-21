@@ -17,6 +17,31 @@ SELECT *, DATE_FORMAT(date, '%d.%m.%Y') AS new_date FROM test;
 SELECT * FROM contacts WHERE contact_id BETWEEN 100 AND 200;
 
 
+------- TRIGGERS MYSQL ------
+
+DELIMITER |
+CREATE TRIGGER `update_post` AFTER INSERT ON `post` 
+FOR EACH ROW 
+  BEGIN 
+    INSERT INTO log Set txt = 'insert', id = NEW.id; 
+  END;
+
+DELIMITER $$
+CREATE TRIGGER new_profile AFTER INSERT ON user
+FOR EACH ROW
+  BEGIN
+    INSERT profiles(user_id). VALUES (NEW.id)
+  END 
+
+
+DELIMITER $$
+CREATE TRIGGER update_user AFTER INSERT ON profilles
+FOR EACH ROW
+  BEGIN
+    UPDATE users SET updated_at = now() WHERE id = OLD.user_id
+  END 
+
+
 
 
 ****************** POSTGRESQL **************************
