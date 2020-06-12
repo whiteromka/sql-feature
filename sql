@@ -3,6 +3,8 @@
 mysqldump -u root -p lesson > mysql_dump.sql // дамп БД
 mysqldump -u root -p lesson -d > mysql_dump.sql // дамп БД только структура
 
+CREATE INDEX my_indx ON user(name);
+
 CREATE TABLE cities (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL UNIQUE,
