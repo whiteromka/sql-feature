@@ -19,6 +19,25 @@ SELECT *, DATE_FORMAT(date, '%d.%m.%Y') AS new_date FROM test;
 SELECT * FROM contacts WHERE contact_id BETWEEN 100 AND 200;
 
 
+SELECT
+       DATE_FORMAT(g_date, "%Y-%m-%d") AS date,
+       COUNT(id) AS count
+    FROM catalog_order
+    GROUP BY DATE_FORMAT(g_date, "%Y-%m-%d");
+
+SELECT
+    DATE_FORMAT(FROM_UNIXTIME(updated_at, "%Y-%m-%d"), "%Y-%m-%d") AS date,
+    COUNT(id) AS count
+FROM catalog_order
+GROUP BY DATE_FORMAT(FROM_UNIXTIME(updated_at, "%Y-%m-%d"), "%Y-%m-%d");
+
+SELECT COUNT(id) FROM catalog_order
+    WHERE updated_at > 1562187500
+    AND updated_at < 1562371200;
+
+SELECT FROM_UNIXTIME(1562198400, "%Y-%m-%d") AS Result;
+
+
 ------- TRIGGERS MYSQL ------
 
 DELIMITER |
